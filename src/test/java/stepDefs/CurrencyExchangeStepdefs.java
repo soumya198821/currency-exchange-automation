@@ -65,22 +65,14 @@ public class CurrencyExchangeStepdefs {
         assertThat(user_send_get_request_to_exchange_rate_api().getBody().jsonPath().get("result"), equalTo(result));
     }
 
-    @Then("Validate {int} currency pairs are retuned by the API")
-    public void validate_currency_pairs_are_retuned_by_the_api(int currencyPairs) {
-        System.out.println(user_send_get_request_to_exchange_rate_api().getBody().jsonPath().getMap("rates"));
+    @Then("Validate {int} currency pairs are returned by the API")
+    public void validate_currency_pairs_are_returned_by_the_api(int currencyPairs) {
         assertThat(user_send_get_request_to_exchange_rate_api().getBody().jsonPath().getMap("rates").size(), equalTo(currencyPairs));
     }
 
     @And("User validate the response body schema")
     public void userValidateTheResponseBodySchema() throws IOException {
         RestAssured.given().get(exhangeUrl+Endpoints.usdExhangePath).then().body(JsonSchemaValidator.matchesJsonSchema(new File(System.getProperty("user.dir")+"/src/test/resources/config/exchangeRateJosnSchema.json"))).extract().response();
-    }
-
-    @And("Validate USD price against the {string} and make sure the prices are in range on {string} – {string} and validate the {string}")
-    public void validateUSDPriceAgainstTheAndMakeSureThePricesAreInRangeOnAndValidateThe(DataTable table) {
-        Map<String, String> data = table.asMap(String.class, String.class);
-        double rate1Price = Double.parseDouble(user_send_get_request_to_exchange_rate_api().getBody().jsonPath().get("rates." + data.get("rate1")).toString());
-        assertThat(rate1Price>Double.parseDouble(data.get("priceRangeLowerSide")) && rate1Price<Double.parseDouble(data.get("priceRangeUpperSide")), equalTo(Boolean.parseBoolean(data.get("status"))));
     }
 
     @Then("I validate the USD price against the following currencies:")

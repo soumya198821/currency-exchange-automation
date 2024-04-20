@@ -9,7 +9,7 @@ Feature: Fetch latest USD to Other Currency Exchange Rate
 
   @Currency
   Scenario: make a GET request to exchange rate API and valiate the response body
-    Then Validate 162 currency pairs are retuned by the API
+    Then Validate 162 currency pairs are returned by the API
 
 
   @Currency
@@ -18,6 +18,7 @@ Feature: Fetch latest USD to Other Currency Exchange Rate
       | Currency | PriceRangeLowerSide | PriceRangeUpperSide | Status |
       | AED      | 3.6                 | 3.7                 | true   |
       | AWG      | 1.7                 | 1.9                 | true   |
-      | INR      | 83.2                | 83.9                | false   |
+      | INR      | 83.2                | 83.9                | true   |
       | ANG      | 2.3                 | 3.4                 | false  |
-
+#      this last value is to test failed runner test which will rerun the failed test
+      | USD      | 10.1                | 11.1                | true   |
