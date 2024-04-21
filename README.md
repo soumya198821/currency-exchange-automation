@@ -9,8 +9,8 @@
 8. **Support Both Junit4&5**: Framework is compatible with both junit 4 and 5
 
 **Required Setup:**
-1. Java installed and configured.
-2. Maven installed and configured.
+1. Java installed and configured. (Preferbale Version 11 and above)
+2. Maven installed and configured. (preferable version 3.9 and above)
 3. Download the files from the Git repository either as a zip file or using Git
    
 **Running Tests:**
